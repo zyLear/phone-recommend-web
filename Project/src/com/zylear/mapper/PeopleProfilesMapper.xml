@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.dao.PeopleProfilesMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.model.PeopleProfiles" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="brand_apple" property="brandApple" jdbcType="DOUBLE" />
+    <result column="brand_mi" property="brandMi" jdbcType="DOUBLE" />
+    <result column="brand_honor" property="brandHonor" jdbcType="DOUBLE" />
+    <result column="brand_samsung" property="brandSamsung" jdbcType="DOUBLE" />
+    <result column="brand_meizu" property="brandMeizu" jdbcType="DOUBLE" />
+    <result column="brand_huawei" property="brandHuawei" jdbcType="DOUBLE" />
+    <result column="brand_oppo" property="brandOppo" jdbcType="DOUBLE" />
+    <result column="brand_vivo" property="brandVivo" jdbcType="DOUBLE" />
+    <result column="brand_nokia" property="brandNokia" jdbcType="DOUBLE" />
+    <result column="brand_letv" property="brandLetv" jdbcType="DOUBLE" />
+    <result column="brand_other" property="brandOther" jdbcType="DOUBLE" />
+    <result column="price_less400" property="priceLess400" jdbcType="DOUBLE" />
+    <result column="price_400to1000" property="price400to1000" jdbcType="DOUBLE" />
+    <result column="price_1001to1700" property="price1001to1700" jdbcType="DOUBLE" />
+    <result column="price_1701to2800" property="price1701to2800" jdbcType="DOUBLE" />
+    <result column="price_2801to4500" property="price2801to4500" jdbcType="DOUBLE" />
+    <result column="price_greater4500" property="priceGreater4500" jdbcType="DOUBLE" />
+    <result column="size_less3p0" property="sizeLess3p0" jdbcType="DOUBLE" />
+    <result column="size_3p0to4p5" property="size3p0to4p5" jdbcType="DOUBLE" />
+    <result column="size_4p6to5p0" property="size4p6to5p0" jdbcType="DOUBLE" />
+    <result column="size_5p1to5p5" property="size5p1to5p5" jdbcType="DOUBLE" />
+    <result column="size_greater5p5" property="sizeGreater5p5" jdbcType="DOUBLE" />
+    <result column="size_other" property="sizeOther" jdbcType="DOUBLE" />
+    <result column="ram_2" property="ram2" jdbcType="DOUBLE" />
+    <result column="ram_3" property="ram3" jdbcType="DOUBLE" />
+    <result column="ram_4" property="ram4" jdbcType="DOUBLE" />
+    <result column="ram_6" property="ram6" jdbcType="DOUBLE" />
+    <result column="ram_other" property="ramOther" jdbcType="DOUBLE" />
+    <result column="pixel_less500" property="pixelLess500" jdbcType="DOUBLE" />
+    <result column="pixel_500to1000" property="pixel500to1000" jdbcType="DOUBLE" />
+    <result column="pixel_1001to1600" property="pixel1001to1600" jdbcType="DOUBLE" />
+    <result column="pixel_greater1600" property="pixelGreater1600" jdbcType="DOUBLE" />
+    <result column="pixel_other" property="pixelOther" jdbcType="DOUBLE" />
+    <result column="rom_8" property="rom8" jdbcType="DOUBLE" />
+    <result column="rom_16" property="rom16" jdbcType="DOUBLE" />
+    <result column="rom_32" property="rom32" jdbcType="DOUBLE" />
+    <result column="rom_64" property="rom64" jdbcType="DOUBLE" />
+    <result column="rom_128" property="rom128" jdbcType="DOUBLE" />
+    <result column="rom_other" property="romOther" jdbcType="DOUBLE" />
+    <result column="cpu_1" property="cpu1" jdbcType="DOUBLE" />
+    <result column="cpu_2" property="cpu2" jdbcType="DOUBLE" />
+    <result column="cpu_4" property="cpu4" jdbcType="DOUBLE" />
+    <result column="cpu_6" property="cpu6" jdbcType="DOUBLE" />
+    <result column="cpu_8" property="cpu8" jdbcType="DOUBLE" />
+    <result column="cpu_other" property="cpuOther" jdbcType="DOUBLE" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="brand" property="brand" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="ram" property="ram" jdbcType="INTEGER" />
+    <result column="pixel" property="pixel" jdbcType="INTEGER" />
+    <result column="rom" property="rom" jdbcType="INTEGER" />
+    <result column="cpu" property="cpu" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, brand_apple, brand_mi, brand_honor, brand_samsung, brand_meizu, brand_huawei, 
+    brand_oppo, brand_vivo, brand_nokia, brand_letv, brand_other, price_less400, price_400to1000, 
+    price_1001to1700, price_1701to2800, price_2801to4500, price_greater4500, size_less3p0, 
+    size_3p0to4p5, size_4p6to5p0, size_5p1to5p5, size_greater5p5, size_other, ram_2, 
+    ram_3, ram_4, ram_6, ram_other, pixel_less500, pixel_500to1000, pixel_1001to1600, 
+    pixel_greater1600, pixel_other, rom_8, rom_16, rom_32, rom_64, rom_128, rom_other, 
+    cpu_1, cpu_2, cpu_4, cpu_6, cpu_8, cpu_other,count,brand,price,size,ram,pixel,rom,cpu,total
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from people_profiles
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from people_profiles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zylear.model.PeopleProfiles" >
+    insert into people_profiles (id, brand_apple, brand_mi, 
+      brand_honor, brand_samsung, brand_meizu, 
+      brand_huawei, brand_oppo, brand_vivo, 
+      brand_nokia, brand_letv, brand_other, 
+      price_less400, price_400to1000, price_1001to1700, 
+      price_1701to2800, price_2801to4500, price_greater4500, 
+      size_less3p0, size_3p0to4p5, size_4p6to5p0, 
+      size_5p1to5p5, size_greater5p5, size_other, 
+      ram_2, ram_3, ram_4, ram_6, 
+      ram_other, pixel_less500, pixel_500to1000, 
+      pixel_1001to1600, pixel_greater1600, pixel_other, 
+      rom_8, rom_16, rom_32, rom_64, 
+      rom_128, rom_other, cpu_1, 
+      cpu_2, cpu_4, cpu_6, cpu_8, 
+      cpu_other, count)
+    values (#{id,jdbcType=INTEGER}, #{brandApple,jdbcType=DOUBLE}, #{brandMi,jdbcType=DOUBLE}, 
+      #{brandHonor,jdbcType=DOUBLE}, #{brandSamsung,jdbcType=DOUBLE}, #{brandMeizu,jdbcType=DOUBLE}, 
+      #{brandHuawei,jdbcType=DOUBLE}, #{brandOppo,jdbcType=DOUBLE}, #{brandVivo,jdbcType=DOUBLE}, 
+      #{brandNokia,jdbcType=DOUBLE}, #{brandLetv,jdbcType=DOUBLE}, #{brandOther,jdbcType=DOUBLE}, 
+      #{priceLess400,jdbcType=DOUBLE}, #{price400to1000,jdbcType=DOUBLE}, #{price1001to1700,jdbcType=DOUBLE}, 
+      #{price1701to2800,jdbcType=DOUBLE}, #{price2801to4500,jdbcType=DOUBLE}, #{priceGreater4500,jdbcType=DOUBLE}, 
+      #{sizeLess3p0,jdbcType=DOUBLE}, #{size3p0to4p5,jdbcType=DOUBLE}, #{size4p6to5p0,jdbcType=DOUBLE}, 
+      #{size5p1to5p5,jdbcType=DOUBLE}, #{sizeGreater5p5,jdbcType=DOUBLE}, #{sizeOther,jdbcType=DOUBLE}, 
+      #{ram2,jdbcType=DOUBLE}, #{ram3,jdbcType=DOUBLE}, #{ram4,jdbcType=DOUBLE}, #{ram6,jdbcType=DOUBLE}, 
+      #{ramOther,jdbcType=DOUBLE}, #{pixelLess500,jdbcType=DOUBLE}, #{pixel500to1000,jdbcType=DOUBLE}, 
+      #{pixel1001to1600,jdbcType=DOUBLE}, #{pixelGreater1600,jdbcType=DOUBLE}, #{pixelOther,jdbcType=DOUBLE}, 
+      #{rom8,jdbcType=DOUBLE}, #{rom16,jdbcType=DOUBLE}, #{rom32,jdbcType=DOUBLE}, #{rom64,jdbcType=DOUBLE}, 
+      #{rom128,jdbcType=DOUBLE}, #{romOther,jdbcType=DOUBLE}, #{cpu1,jdbcType=DOUBLE}, 
+      #{cpu2,jdbcType=DOUBLE}, #{cpu4,jdbcType=DOUBLE}, #{cpu6,jdbcType=DOUBLE}, #{cpu8,jdbcType=DOUBLE}, 
+      #{cpuOther,jdbcType=DOUBLE}, #{count,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zylear.model.PeopleProfiles" >
+    insert into people_profiles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brandApple != null" >
+        brand_apple,
+      </if>
+      <if test="brandMi != null" >
+        brand_mi,
+      </if>
+      <if test="brandHonor != null" >
+        brand_honor,
+      </if>
+      <if test="brandSamsung != null" >
+        brand_samsung,
+      </if>
+      <if test="brandMeizu != null" >
+        brand_meizu,
+      </if>
+      <if test="brandHuawei != null" >
+        brand_huawei,
+      </if>
+      <if test="brandOppo != null" >
+        brand_oppo,
+      </if>
+      <if test="brandVivo != null" >
+        brand_vivo,
+      </if>
+      <if test="brandNokia != null" >
+        brand_nokia,
+      </if>
+      <if test="brandLetv != null" >
+        brand_letv,
+      </if>
+      <if test="brandOther != null" >
+        brand_other,
+      </if>
+      <if test="priceLess400 != null" >
+        price_less400,
+      </if>
+      <if test="price400to1000 != null" >
+        price_400to1000,
+      </if>
+      <if test="price1001to1700 != null" >
+        price_1001to1700,
+      </if>
+      <if test="price1701to2800 != null" >
+        price_1701to2800,
+      </if>
+      <if test="price2801to4500 != null" >
+        price_2801to4500,
+      </if>
+      <if test="priceGreater4500 != null" >
+        price_greater4500,
+      </if>
+      <if test="sizeLess3p0 != null" >
+        size_less3p0,
+      </if>
+      <if test="size3p0to4p5 != null" >
+        size_3p0to4p5,
+      </if>
+      <if test="size4p6to5p0 != null" >
+        size_4p6to5p0,
+      </if>
+      <if test="size5p1to5p5 != null" >
+        size_5p1to5p5,
+      </if>
+      <if test="sizeGreater5p5 != null" >
+        size_greater5p5,
+      </if>
+      <if test="sizeOther != null" >
+        size_other,
+      </if>
+      <if test="ram2 != null" >
+        ram_2,
+      </if>
+      <if test="ram3 != null" >
+        ram_3,
+      </if>
+      <if test="ram4 != null" >
+        ram_4,
+      </if>
+      <if test="ram6 != null" >
+        ram_6,
+      </if>
+      <if test="ramOther != null" >
+        ram_other,
+      </if>
+      <if test="pixelLess500 != null" >
+        pixel_less500,
+      </if>
+      <if test="pixel500to1000 != null" >
+        pixel_500to1000,
+      </if>
+      <if test="pixel1001to1600 != null" >
+        pixel_1001to1600,
+      </if>
+      <if test="pixelGreater1600 != null" >
+        pixel_greater1600,
+      </if>
+      <if test="pixelOther != null" >
+        pixel_other,
+      </if>
+      <if test="rom8 != null" >
+        rom_8,
+      </if>
+      <if test="rom16 != null" >
+        rom_16,
+      </if>
+      <if test="rom32 != null" >
+        rom_32,
+      </if>
+      <if test="rom64 != null" >
+        rom_64,
+      </if>
+      <if test="rom128 != null" >
+        rom_128,
+      </if>
+      <if test="romOther != null" >
+        rom_other,
+      </if>
+      <if test="cpu1 != null" >
+        cpu_1,
+      </if>
+      <if test="cpu2 != null" >
+        cpu_2,
+      </if>
+      <if test="cpu4 != null" >
+        cpu_4,
+      </if>
+      <if test="cpu6 != null" >
+        cpu_6,
+      </if>
+      <if test="cpu8 != null" >
+        cpu_8,
+      </if>
+      <if test="cpuOther != null" >
+        cpu_other,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="brandApple != null" >
+        #{brandApple,jdbcType=DOUBLE},
+      </if>
+      <if test="brandMi != null" >
+        #{brandMi,jdbcType=DOUBLE},
+      </if>
+      <if test="brandHonor != null" >
+        #{brandHonor,jdbcType=DOUBLE},
+      </if>
+      <if test="brandSamsung != null" >
+        #{brandSamsung,jdbcType=DOUBLE},
+      </if>
+      <if test="brandMeizu != null" >
+        #{brandMeizu,jdbcType=DOUBLE},
+      </if>
+      <if test="brandHuawei != null" >
+        #{brandHuawei,jdbcType=DOUBLE},
+      </if>
+      <if test="brandOppo != null" >
+        #{brandOppo,jdbcType=DOUBLE},
+      </if>
+      <if test="brandVivo != null" >
+        #{brandVivo,jdbcType=DOUBLE},
+      </if>
+      <if test="brandNokia != null" >
+        #{brandNokia,jdbcType=DOUBLE},
+      </if>
+      <if test="brandLetv != null" >
+        #{brandLetv,jdbcType=DOUBLE},
+      </if>
+      <if test="brandOther != null" >
+        #{brandOther,jdbcType=DOUBLE},
+      </if>
+      <if test="priceLess400 != null" >
+        #{priceLess400,jdbcType=DOUBLE},
+      </if>
+      <if test="price400to1000 != null" >
+        #{price400to1000,jdbcType=DOUBLE},
+      </if>
+      <if test="price1001to1700 != null" >
+        #{price1001to1700,jdbcType=DOUBLE},
+      </if>
+      <if test="price1701to2800 != null" >
+        #{price1701to2800,jdbcType=DOUBLE},
+      </if>
+      <if test="price2801to4500 != null" >
+        #{price2801to4500,jdbcType=DOUBLE},
+      </if>
+      <if test="priceGreater4500 != null" >
+        #{priceGreater4500,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeLess3p0 != null" >
+        #{sizeLess3p0,jdbcType=DOUBLE},
+      </if>
+      <if test="size3p0to4p5 != null" >
+        #{size3p0to4p5,jdbcType=DOUBLE},
+      </if>
+      <if test="size4p6to5p0 != null" >
+        #{size4p6to5p0,jdbcType=DOUBLE},
+      </if>
+      <if test="size5p1to5p5 != null" >
+        #{size5p1to5p5,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeGreater5p5 != null" >
+        #{sizeGreater5p5,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeOther != null" >
+        #{sizeOther,jdbcType=DOUBLE},
+      </if>
+      <if test="ram2 != null" >
+        #{ram2,jdbcType=DOUBLE},
+      </if>
+      <if test="ram3 != null" >
+        #{ram3,jdbcType=DOUBLE},
+      </if>
+      <if test="ram4 != null" >
+        #{ram4,jdbcType=DOUBLE},
+      </if>
+      <if test="ram6 != null" >
+        #{ram6,jdbcType=DOUBLE},
+      </if>
+      <if test="ramOther != null" >
+        #{ramOther,jdbcType=DOUBLE},
+      </if>
+      <if test="pixelLess500 != null" >
+        #{pixelLess500,jdbcType=DOUBLE},
+      </if>
+      <if test="pixel500to1000 != null" >
+        #{pixel500to1000,jdbcType=DOUBLE},
+      </if>
+      <if test="pixel1001to1600 != null" >
+        #{pixel1001to1600,jdbcType=DOUBLE},
+      </if>
+      <if test="pixelGreater1600 != null" >
+        #{pixelGreater1600,jdbcType=DOUBLE},
+      </if>
+      <if test="pixelOther != null" >
+        #{pixelOther,jdbcType=DOUBLE},
+      </if>
+      <if test="rom8 != null" >
+        #{rom8,jdbcType=DOUBLE},
+      </if>
+      <if test="rom16 != null" >
+        #{rom16,jdbcType=DOUBLE},
+      </if>
+      <if test="rom32 != null" >
+        #{rom32,jdbcType=DOUBLE},
+      </if>
+      <if test="rom64 != null" >
+        #{rom64,jdbcType=DOUBLE},
+      </if>
+      <if test="rom128 != null" >
+        #{rom128,jdbcType=DOUBLE},
+      </if>
+      <if test="romOther != null" >
+        #{romOther,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu1 != null" >
+        #{cpu1,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu2 != null" >
+        #{cpu2,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu4 != null" >
+        #{cpu4,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu6 != null" >
+        #{cpu6,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu8 != null" >
+        #{cpu8,jdbcType=DOUBLE},
+      </if>
+      <if test="cpuOther != null" >
+        #{cpuOther,jdbcType=DOUBLE},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.model.PeopleProfiles" >
+    update people_profiles
+    <set >
+      <if test="brandApple != null" >
+        brand_apple = #{brandApple,jdbcType=DOUBLE},
+      </if>
+      <if test="brandMi != null" >
+        brand_mi = #{brandMi,jdbcType=DOUBLE},
+      </if>
+      <if test="brandHonor != null" >
+        brand_honor = #{brandHonor,jdbcType=DOUBLE},
+      </if>
+      <if test="brandSamsung != null" >
+        brand_samsung = #{brandSamsung,jdbcType=DOUBLE},
+      </if>
+      <if test="brandMeizu != null" >
+        brand_meizu = #{brandMeizu,jdbcType=DOUBLE},
+      </if>
+      <if test="brandHuawei != null" >
+        brand_huawei = #{brandHuawei,jdbcType=DOUBLE},
+      </if>
+      <if test="brandOppo != null" >
+        brand_oppo = #{brandOppo,jdbcType=DOUBLE},
+      </if>
+      <if test="brandVivo != null" >
+        brand_vivo = #{brandVivo,jdbcType=DOUBLE},
+      </if>
+      <if test="brandNokia != null" >
+        brand_nokia = #{brandNokia,jdbcType=DOUBLE},
+      </if>
+      <if test="brandLetv != null" >
+        brand_letv = #{brandLetv,jdbcType=DOUBLE},
+      </if>
+      <if test="brandOther != null" >
+        brand_other = #{brandOther,jdbcType=DOUBLE},
+      </if>
+      <if test="priceLess400 != null" >
+        price_less400 = #{priceLess400,jdbcType=DOUBLE},
+      </if>
+      <if test="price400to1000 != null" >
+        price_400to1000 = #{price400to1000,jdbcType=DOUBLE},
+      </if>
+      <if test="price1001to1700 != null" >
+        price_1001to1700 = #{price1001to1700,jdbcType=DOUBLE},
+      </if>
+      <if test="price1701to2800 != null" >
+        price_1701to2800 = #{price1701to2800,jdbcType=DOUBLE},
+      </if>
+      <if test="price2801to4500 != null" >
+        price_2801to4500 = #{price2801to4500,jdbcType=DOUBLE},
+      </if>
+      <if test="priceGreater4500 != null" >
+        price_greater4500 = #{priceGreater4500,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeLess3p0 != null" >
+        size_less3p0 = #{sizeLess3p0,jdbcType=DOUBLE},
+      </if>
+      <if test="size3p0to4p5 != null" >
+        size_3p0to4p5 = #{size3p0to4p5,jdbcType=DOUBLE},
+      </if>
+      <if test="size4p6to5p0 != null" >
+        size_4p6to5p0 = #{size4p6to5p0,jdbcType=DOUBLE},
+      </if>
+      <if test="size5p1to5p5 != null" >
+        size_5p1to5p5 = #{size5p1to5p5,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeGreater5p5 != null" >
+        size_greater5p5 = #{sizeGreater5p5,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeOther != null" >
+        size_other = #{sizeOther,jdbcType=DOUBLE},
+      </if>
+      <if test="ram2 != null" >
+        ram_2 = #{ram2,jdbcType=DOUBLE},
+      </if>
+      <if test="ram3 != null" >
+        ram_3 = #{ram3,jdbcType=DOUBLE},
+      </if>
+      <if test="ram4 != null" >
+        ram_4 = #{ram4,jdbcType=DOUBLE},
+      </if>
+      <if test="ram6 != null" >
+        ram_6 = #{ram6,jdbcType=DOUBLE},
+      </if>
+      <if test="ramOther != null" >
+        ram_other = #{ramOther,jdbcType=DOUBLE},
+      </if>
+      <if test="pixelLess500 != null" >
+        pixel_less500 = #{pixelLess500,jdbcType=DOUBLE},
+      </if>
+      <if test="pixel500to1000 != null" >
+        pixel_500to1000 = #{pixel500to1000,jdbcType=DOUBLE},
+      </if>
+      <if test="pixel1001to1600 != null" >
+        pixel_1001to1600 = #{pixel1001to1600,jdbcType=DOUBLE},
+      </if>
+      <if test="pixelGreater1600 != null" >
+        pixel_greater1600 = #{pixelGreater1600,jdbcType=DOUBLE},
+      </if>
+      <if test="pixelOther != null" >
+        pixel_other = #{pixelOther,jdbcType=DOUBLE},
+      </if>
+      <if test="rom8 != null" >
+        rom_8 = #{rom8,jdbcType=DOUBLE},
+      </if>
+      <if test="rom16 != null" >
+        rom_16 = #{rom16,jdbcType=DOUBLE},
+      </if>
+      <if test="rom32 != null" >
+        rom_32 = #{rom32,jdbcType=DOUBLE},
+      </if>
+      <if test="rom64 != null" >
+        rom_64 = #{rom64,jdbcType=DOUBLE},
+      </if>
+      <if test="rom128 != null" >
+        rom_128 = #{rom128,jdbcType=DOUBLE},
+      </if>
+      <if test="romOther != null" >
+        rom_other = #{romOther,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu1 != null" >
+        cpu_1 = #{cpu1,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu2 != null" >
+        cpu_2 = #{cpu2,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu4 != null" >
+        cpu_4 = #{cpu4,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu6 != null" >
+        cpu_6 = #{cpu6,jdbcType=DOUBLE},
+      </if>
+      <if test="cpu8 != null" >
+        cpu_8 = #{cpu8,jdbcType=DOUBLE},
+      </if>
+      <if test="cpuOther != null" >
+        cpu_other = #{cpuOther,jdbcType=DOUBLE},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateProfiles" parameterType="com.zylear.model.PeopleProfiles" >
+    update people_profiles
+    set brand_apple = #{brandApple,jdbcType=DOUBLE},
+      brand_mi = #{brandMi,jdbcType=DOUBLE},
+      brand_honor = #{brandHonor,jdbcType=DOUBLE},
+      brand_samsung = #{brandSamsung,jdbcType=DOUBLE},
+      brand_meizu = #{brandMeizu,jdbcType=DOUBLE},
+      brand_huawei = #{brandHuawei,jdbcType=DOUBLE},
+      brand_oppo = #{brandOppo,jdbcType=DOUBLE},
+      brand_vivo = #{brandVivo,jdbcType=DOUBLE},
+      brand_nokia = #{brandNokia,jdbcType=DOUBLE},
+      brand_letv = #{brandLetv,jdbcType=DOUBLE},
+      brand_other = #{brandOther,jdbcType=DOUBLE},
+      price_less400 = #{priceLess400,jdbcType=DOUBLE},
+      price_400to1000 = #{price400to1000,jdbcType=DOUBLE},
+      price_1001to1700 = #{price1001to1700,jdbcType=DOUBLE},
+      price_1701to2800 = #{price1701to2800,jdbcType=DOUBLE},
+      price_2801to4500 = #{price2801to4500,jdbcType=DOUBLE},
+      price_greater4500 = #{priceGreater4500,jdbcType=DOUBLE},
+      size_less3p0 = #{sizeLess3p0,jdbcType=DOUBLE},
+      size_3p0to4p5 = #{size3p0to4p5,jdbcType=DOUBLE},
+      size_4p6to5p0 = #{size4p6to5p0,jdbcType=DOUBLE},
+      size_5p1to5p5 = #{size5p1to5p5,jdbcType=DOUBLE},
+      size_greater5p5 = #{sizeGreater5p5,jdbcType=DOUBLE},
+      size_other = #{sizeOther,jdbcType=DOUBLE},
+      ram_2 = #{ram2,jdbcType=DOUBLE},
+      ram_3 = #{ram3,jdbcType=DOUBLE},
+      ram_4 = #{ram4,jdbcType=DOUBLE},
+      ram_6 = #{ram6,jdbcType=DOUBLE},
+      ram_other = #{ramOther,jdbcType=DOUBLE},
+      pixel_less500 = #{pixelLess500,jdbcType=DOUBLE},
+      pixel_500to1000 = #{pixel500to1000,jdbcType=DOUBLE},
+      pixel_1001to1600 = #{pixel1001to1600,jdbcType=DOUBLE},
+      pixel_greater1600 = #{pixelGreater1600,jdbcType=DOUBLE},
+      pixel_other = #{pixelOther,jdbcType=DOUBLE},
+      rom_8 = #{rom8,jdbcType=DOUBLE},
+      rom_16 = #{rom16,jdbcType=DOUBLE},
+      rom_32 = #{rom32,jdbcType=DOUBLE},
+      rom_64 = #{rom64,jdbcType=DOUBLE},
+      rom_128 = #{rom128,jdbcType=DOUBLE},
+      rom_other = #{romOther,jdbcType=DOUBLE},
+      cpu_1 = #{cpu1,jdbcType=DOUBLE},
+      cpu_2 = #{cpu2,jdbcType=DOUBLE},
+      cpu_4 = #{cpu4,jdbcType=DOUBLE},
+      cpu_6 = #{cpu6,jdbcType=DOUBLE},
+      cpu_8 = #{cpu8,jdbcType=DOUBLE},
+      cpu_other = #{cpuOther,jdbcType=DOUBLE},
+      count = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updatePreference" parameterType="com.zylear.model.PeopleProfiles">
+    UPDATE people_profiles SET
+      brand=#{brand},
+      price=#{price},
+      size=#{size},
+      ram=#{ram},
+      pixel=#{pixel},
+      rom=#{rom},
+      cpu=#{cpu},
+      total=#{total}
+    WHERE id=#{id}
+  </update>
+
+</mapper>

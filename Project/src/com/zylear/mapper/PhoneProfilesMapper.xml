@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.dao.PhoneProfilesMapper">
+    <resultMap id="BaseResultMap" type="com.zylear.model.PhoneProfiles">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="brand_apple" property="brandApple" jdbcType="TINYINT"/>
+        <result column="brand_mi" property="brandMi" jdbcType="TINYINT"/>
+        <result column="brand_honor" property="brandHonor" jdbcType="TINYINT"/>
+        <result column="brand_samsung" property="brandSamsung" jdbcType="TINYINT"/>
+        <result column="brand_meizu" property="brandMeizu" jdbcType="TINYINT"/>
+        <result column="brand_huawei" property="brandHuawei" jdbcType="TINYINT"/>
+        <result column="brand_oppo" property="brandOppo" jdbcType="TINYINT"/>
+        <result column="brand_vivo" property="brandVivo" jdbcType="TINYINT"/>
+        <result column="brand_nokia" property="brandNokia" jdbcType="TINYINT"/>
+        <result column="brand_letv" property="brandLetv" jdbcType="TINYINT"/>
+        <result column="brand_other" property="brandOther" jdbcType="TINYINT"/>
+        <result column="price_less400" property="priceLess400" jdbcType="TINYINT"/>
+        <result column="price_400to1000" property="price400to1000" jdbcType="TINYINT"/>
+        <result column="price_1001to1700" property="price1001to1700" jdbcType="TINYINT"/>
+        <result column="price_1701to2800" property="price1701to2800" jdbcType="TINYINT"/>
+        <result column="price_2801to4500" property="price2801to4500" jdbcType="TINYINT"/>
+        <result column="price_greater4500" property="priceGreater4500" jdbcType="TINYINT"/>
+        <result column="size_less3p0" property="sizeLess3p0" jdbcType="TINYINT"/>
+        <result column="size_3p0to4p5" property="size3p0to4p5" jdbcType="TINYINT"/>
+        <result column="size_4p6to5p0" property="size4p6to5p0" jdbcType="TINYINT"/>
+        <result column="size_5p1to5p5" property="size5p1to5p5" jdbcType="TINYINT"/>
+        <result column="size_greater5p5" property="sizeGreater5p5" jdbcType="TINYINT"/>
+        <result column="size_other" property="sizeOther" jdbcType="TINYINT"/>
+        <result column="ram_2" property="ram2" jdbcType="TINYINT"/>
+        <result column="ram_3" property="ram3" jdbcType="TINYINT"/>
+        <result column="ram_4" property="ram4" jdbcType="TINYINT"/>
+        <result column="ram_6" property="ram6" jdbcType="TINYINT"/>
+        <result column="ram_other" property="ramOther" jdbcType="TINYINT"/>
+        <result column="pixel_less500" property="pixelLess500" jdbcType="TINYINT"/>
+        <result column="pixel_500to1000" property="pixel500to1000" jdbcType="TINYINT"/>
+        <result column="pixel_1001to1600" property="pixel1001to1600" jdbcType="TINYINT"/>
+        <result column="pixel_greater1600" property="pixelGreater1600" jdbcType="TINYINT"/>
+        <result column="pixel_other" property="pixelOther" jdbcType="TINYINT"/>
+        <result column="rom_8" property="rom8" jdbcType="TINYINT"/>
+        <result column="rom_16" property="rom16" jdbcType="TINYINT"/>
+        <result column="rom_32" property="rom32" jdbcType="TINYINT"/>
+        <result column="rom_64" property="rom64" jdbcType="TINYINT"/>
+        <result column="rom_128" property="rom128" jdbcType="TINYINT"/>
+        <result column="rom_other" property="romOther" jdbcType="TINYINT"/>
+        <result column="cpu_1" property="cpu1" jdbcType="TINYINT"/>
+        <result column="cpu_2" property="cpu2" jdbcType="TINYINT"/>
+        <result column="cpu_4" property="cpu4" jdbcType="TINYINT"/>
+        <result column="cpu_6" property="cpu6" jdbcType="TINYINT"/>
+        <result column="cpu_8" property="cpu8" jdbcType="TINYINT"/>
+        <result column="cpu_other" property="cpuOther" jdbcType="TINYINT"/>
+    </resultMap>
+
+
+
+    <resultMap id="ShowMap" type="com.zylear.model.PhoneInfo">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="link" property="link"/>
+        <result column="img" property="img"/>
+        <result column="source" property="source"/>
+        <result column="brand" property="brand"/>
+        <result column="price" property="price"/>
+        <result column="size" property="size"/>
+        <result column="ram" property="ram"/>
+        <result column="pixel" property="pixel"/>
+        <result column="rom" property="rom"/>
+        <result column="cpu" property="cpu"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, brand_apple, brand_mi, brand_honor, brand_samsung, brand_meizu, brand_huawei,
+        brand_oppo, brand_vivo, brand_nokia, brand_letv, brand_other, price_less400, price_400to1000,
+        price_1001to1700, price_1701to2800, price_2801to4500, price_greater4500, size_less3p0,
+        size_3p0to4p5, size_4p6to5p0, size_5p1to5p5, size_greater5p5, size_other, ram_2,
+        ram_3, ram_4, ram_6, ram_other, pixel_less500, pixel_500to1000, pixel_1001to1600,
+        pixel_greater1600, pixel_other, rom_8, rom_16, rom_32, rom_64, rom_128, rom_other,
+        cpu_1, cpu_2, cpu_4, cpu_6, cpu_8, cpu_other
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from phone_profiles
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+
+    <select id="recommendation" resultMap="ShowMap" parameterType="com.zylear.model.PeopleProfiles">
+        SELECT
+            phone_info.*,
+            sqrt(
+                    (power(brand_apple - #{brandApple}, 2) +
+                     power(brand_mi - #{brandMi}, 2) +
+                     power(brand_honor - #{brandHonor}, 2) +
+                     power(brand_samsung - #{brandSamsung}, 2) +
+                     power(brand_meizu - #{brandMeizu}, 2) +
+                     power(brand_huawei - #{brandHuawei}, 2) +
+                     power(brand_oppo - #{brandOppo}, 2) +
+                     power(brand_vivo - #{brandVivo}, 2) +
+                     power(brand_nokia - #{brandNokia}, 2) +
+                     power(brand_letv - #{brandLetv}, 2) +
+                     power(brand_other - #{brandOther}, 2)) * (#{brand} / #{total}) +
+                    (power(price_less400 - #{priceLess400}, 2) +
+                     power(price_400to1000 - #{price400to1000}, 2) +
+                     power(price_1001to1700 - #{price1001to1700}, 2) +
+                     power(price_1701to2800 - #{price1701to2800}, 2) +
+                     power(price_2801to4500 - #{price2801to4500}, 2) +
+                     power(price_greater4500 - #{priceGreater4500}, 2)) * (#{price} / #{total}) +
+                    (power(size_less3p0 - #{sizeLess3p0}, 2) +
+                     power(size_3p0to4p5 - #{size3p0to4p5}, 2) +
+                     power(size_4p6to5p0 - #{size4p6to5p0}, 2) +
+                     power(size_5p1to5p5 - #{size5p1to5p5}, 2) +
+                     power(size_greater5p5 - #{sizeGreater5p5}, 2) +
+                     power(size_other - #{sizeOther}, 2)) * (#{size} / #{total}) +
+                    (power(ram_2 - #{ram2}, 2) +
+                     power(ram_3 - #{ram3}, 2) +
+                     power(ram_4 - #{ram4}, 2) +
+                     power(ram_6 - #{ram6}, 2) +
+                     power(ram_other - #{ramOther}, 2)) * (#{ram} / #{total}) +
+                    (power(pixel_less500 - #{pixelLess500}, 2) +
+                     power(pixel_500to1000 - #{pixel500to1000}, 2) +
+                     power(pixel_1001to1600 - #{pixel1001to1600}, 2) +
+                     power(pixel_greater1600 - #{pixelGreater1600}, 2) +
+                     power(pixel_other - #{pixelOther}, 2)) * (#{pixel} / #{total}) +
+                    (power(rom_8 - #{rom8}, 2) +
+                     power(rom_16 - #{rom16}, 2) +
+                     power(rom_32 - #{rom32}, 2) +
+                     power(rom_64 - #{rom64}, 2) +
+                     power(rom_128 - #{rom128}, 2) +
+                     power(rom_other - #{romOther}, 2)) * (#{rom} / #{total}) +
+                    (power(cpu_1 - #{cpu1}, 2) +
+                     power(cpu_2 - #{cpu2}, 2) +
+                     power(cpu_4 - #{cpu4}, 2) +
+                     power(cpu_6 - #{cpu6}, 2) +
+                     power(cpu_8 - #{cpu8}, 2) +
+                     power(cpu_other - #{cpuOther}, 2)) * (#{cpu} / #{total})
+            ) AS recommend_score
+        FROM phone_profiles, phone_info
+        WHERE phone_info.id = phone_profiles.id AND
+              phone_info.is_delete = 0 AND
+              phone_info.id NOT IN
+              (SELECT phone_id
+               FROM people_dislike
+               WHERE people_id = #{id})
+        ORDER BY recommend_score
+        LIMIT #{page}, 20
+    </select>
+
+    <select id="searchPhoneInfo" parameterType="com.zylear.model.PhoneProfiles" resultMap="ShowMap">
+        SELECT phone_info.* FROM phone_profiles,phone_info
+        <where>
+            phone_profiles.id = phone_info.id and
+            phone_info.is_delete = 0 and
+            #{startPrice} &lt; phone_info.price and
+            #{endPrice} &gt; phone_info.price
+            <if test="searchTitle != null ">
+                and phone_info.title like #{searchTitle}
+            </if>
+
+            <trim prefix="and  (" suffix=")" prefixOverrides="or">
+                <if test="brandApple == 1">
+                    or brand_apple = #{brandApple}
+                </if>
+                <if test="brandMi == 1">
+                    or brand_mi = #{brandMi}
+                </if>
+                <if test="brandHonor == 1">
+                    or brand_honor = #{brandHonor}
+                </if>
+                <if test="brandSamsung == 1">
+                    or brand_samsung = #{brandSamsung}
+                </if>
+                <if test="brandMeizu == 1">
+                    or brand_meizu = #{brandMeizu}
+                </if>
+                <if test="brandHuawei == 1">
+                    or brand_huawei = #{brandHuawei}
+                </if>
+                <if test="brandOppo == 1">
+                    or brand_oppo = #{brandOppo}
+                </if>
+                <if test="brandVivo == 1">
+                    or brand_vivo = #{brandVivo}
+                </if>
+                <if test="brandNokia == 1">
+                    or brand_nokia = #{brandNokia}
+                </if>
+                <if test="brandLetv == 1">
+                    or brand_letv = #{brandLetv}
+                </if>
+                <if test="brandOther == 1">
+                    or brand_other = #{brandOther}
+                </if>
+            </trim>
+
+            <trim prefix="and (" suffix=")" prefixOverrides="or">
+                <if test="sizeLess3p0 == 1">
+                    or size_less3p0 = 1
+                </if>
+                <if test="size3p0to4p5 == 1">
+                    or size_3p0to4p5 = 1
+                </if>
+                <if test="size4p6to5p0 == 1">
+                    or size_4p6to5p0 = 1
+                </if>
+                <if test="size5p1to5p5 == 1">
+                    or size_5p1to5p5 = 1
+                </if>
+                <if test="sizeGreater5p5 == 1">
+                    or size_greater5p5 = 1
+                </if>
+                <if test="sizeOther == 1">
+                    or size_other = 1
+                </if>
+            </trim>
+
+            <trim prefix="and (" suffix=")" prefixOverrides="or">
+                <if test="ram2 == 1">
+                    or ram_2 = 1
+                </if>
+                <if test="ram3 == 1">
+                    or ram_3 = 1
+                </if>
+                <if test="ram4 == 1">
+                    or ram_4 = 1
+                </if>
+                <if test="ram6 == 1">
+                    or ram_6 = 1
+                </if>
+                <if test="ramOther == 1">
+                    or ram_other = 1
+                </if>
+            </trim>
+
+            <trim prefix="and (" suffix=")" prefixOverrides="or">
+                <if test="pixelLess500 == 1">
+                    or pixel_less500 = 1
+                </if>
+                <if test="pixel500to1000 == 1">
+                    or pixel_500to1000 = 1
+                </if>
+                <if test="pixel1001to1600 == 1">
+                    or pixel_1001to1600 = 1
+                </if>
+                <if test="pixelGreater1600 == 1">
+                    or pixel_greater1600 = 1
+                </if>
+                <if test="pixelOther == 1">
+                    or pixel_other = 1
+                </if>
+            </trim>
+
+            <trim prefix="and (" suffix=")" prefixOverrides="or">
+                <if test="rom8 == 1">
+                    or rom_8 = 1
+                </if>
+                <if test="rom16 == 1">
+                    or rom_16 = 1
+                </if>
+                <if test="rom32 == 1">
+                    or rom_32 = 1
+                </if>
+                <if test="rom64 == 1">
+                    or rom_64 = 1
+                </if>
+                <if test="rom128 == 1">
+                    or rom_128 = 1
+                </if>
+                <if test="romOther == 1">
+                    or rom_other = 1
+                </if>
+            </trim>
+
+            <trim prefix="and (" suffix=")" prefixOverrides="or">
+                <if test="cpu1 == 1">
+                    or cpu_1 = 1
+                </if>
+                <if test="cpu2 == 1">
+                    or cpu_2 = 1
+                </if>
+                <if test="cpu4 == 1">
+                    or cpu_4 = 1
+                </if>
+                <if test="cpu6 == 1">
+                    or cpu_6 = 1
+                </if>
+                <if test="cpu8 == 1">
+                    or cpu_8 = 1
+                </if>
+                <if test="cpuOther == 1">
+                    or cpu_other = 1
+                </if>
+            </trim>
+
+        </where>
+        <choose>
+            <when test="sort == 0">
+                order by phone_profiles.count desc
+            </when>
+            <when test="sort == 1">
+                order by phone_info.price asc
+            </when>
+            <when test="sort == 2">
+                order by phone_info.price desc
+            </when>
+            <when test="sort == 3">
+                order by
+                phone_info.price
+                desc
+            </when>
+        </choose>
+        LIMIT #{currentPage},20
+
+    </select>
+
+    <update id="addPhoneCount" parameterType="int">
+        UPDATE phone_profiles
+        SET count = count + 1
+        WHERE id = #{phoneId}
+    </update>
+
+
+</mapper>

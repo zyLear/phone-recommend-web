@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.dao.PeopleLikeMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.model.PeopleLike" >
+    <result column="people_id" property="peopleId" jdbcType="INTEGER" />
+    <result column="phone_id" property="phoneId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="PhoneInfoMap" type="com.zylear.model.PhoneInfo">
+    <id column="id" property="id" />
+    <result column="title" property="title" />
+    <result column="link" property="link" />
+    <result column="img" property="img" />
+    <result column="source" property="source" />
+    <result column="brand" property="brand"/>
+    <result column="price" property="price" />
+    <result column="size" property="size"/>
+    <result column="ram" property="ram"/>
+    <result column="pixel" property="pixel"/>
+    <result column="rom" property="rom"/>
+    <result column="cpu" property="cpu"/>
+  </resultMap>
+
+
+  <insert id="insert" parameterType="com.zylear.model.PeopleLike" >
+    insert into people_like (people_id, phone_id)
+    values (#{peopleId,jdbcType=INTEGER}, #{phoneId,jdbcType=INTEGER})
+  </insert>
+
+  <select id="getPhoneInfoByPeopleId" resultMap="PhoneInfoMap" parameterType="int">
+    SELECT * FROM people_like,phone_info WHERE phone_id=id AND people_id=#{peopleId}
+  </select>
+
+  <delete id="delete" parameterType="com.zylear.model.PeopleLike">
+    DELETE FROM people_like where people_id=#{peopleId} AND  phone_id=#{phoneId}
+  </delete>
+</mapper>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.dao.PhoneInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.zylear.model.PhoneInfo">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="link" property="link" />
+        <result column="img" property="img" />
+        <result column="source" property="source" />
+        <result column="brand" property="brand"/>
+        <result column="price" property="price" />
+        <result column="size" property="size"/>
+        <result column="ram" property="ram"/>
+        <result column="pixel" property="pixel"/>
+        <result column="rom" property="rom"/>
+        <result column="cpu" property="cpu"/>
+        <result column="model" property="model"/>
+    </resultMap>
+
+
+    <!--<resultMap id="DetailMap" tycom.zylearLear.model.PhoneInfo">-->
+        <!--<id column="id" property="id"></id>-->
+        <!--<result column="brand" property="brand"></result>-->
+        <!--<result column="price" property="price"></result>-->
+        <!--<result column="size" property="size"></result>-->
+        <!--<result column="ram" property="ram"></result>-->
+        <!--<result column="pixel" property="pixel"></result>-->
+        <!--<result column="rom" property="rom"></result>-->
+        <!--<result column="cpu" property="cpu"></result>-->
+    <!--</resultMap>-->
+
+
+
+    <!--<sql id="Base_Column_List">-->
+        <!--id, title, link, img, source, price-->
+    <!--</sql>-->
+
+    <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">-->
+        <!--select-->
+            <!--id, title, link, img, source, price,brand,size,ram,pixel,rom,cpu-->
+        <!--from phone_info-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</select>-->
+    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+        <!--DELETE FROM phone_info-->
+        <!--WHERE id = #{id,jdbcType=INTEGER}-->
+    <!--</delete>-->
+    <!--<insert id="insert" parameterTycom.zylearLear.model.PhoneInfo">-->
+        <!--INSERT INTO phone_info (id, title, link,-->
+                               <!--img, source, price)-->
+        <!--VALUES (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR},-->
+                <!--#{img,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{price,jdbcType=REAL})-->
+    <!--</insert>-->
+
+
+
+
+    <!--<insert id="insertSelective" parameterTycom.zylearLear.model.PhoneInfo">-->
+        <!--insert into phone_info-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="id != null">-->
+                <!--id,-->
+            <!--</if>-->
+            <!--<if test="title != null">-->
+                <!--title,-->
+            <!--</if>-->
+            <!--<if test="link != null">-->
+                <!--link,-->
+            <!--</if>-->
+            <!--<if test="img != null">-->
+                <!--img,-->
+            <!--</if>-->
+            <!--<if test="source != null">-->
+                <!--source,-->
+            <!--</if>-->
+            <!--<if test="price != null">-->
+                <!--price,-->
+            <!--</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+            <!--<if test="id != null">-->
+                <!--#{id,jdbcType=INTEGER},-->
+            <!--</if>-->
+            <!--<if test="title != null">-->
+                <!--#{title,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="link != null">-->
+                <!--#{link,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="img != null">-->
+                <!--#{img,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="source != null">-->
+                <!--#{source,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="price != null">-->
+                <!--#{price,jdbcType=REAL},-->
+            <!--</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
+    <!--<update id="updateByPrimaryKeySelective" parameterTycom.zylearLear.model.PhoneInfo">-->
+        <!--update phone_info-->
+        <!--<set>-->
+            <!--<if test="title != null">-->
+                <!--title = #{title,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="link != null">-->
+                <!--link = #{link,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="img != null">-->
+                <!--img = #{img,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="source != null">-->
+                <!--source = #{source,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="price != null">-->
+                <!--price = #{price,jdbcType=REAL},-->
+            <!--</if>-->
+        <!--</set>-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+        <!--<update id="updateByPrimaryKey" parameterTycom.zylearLear.model.PhoneInfo">-->
+            <!--UPDATE phone_info-->
+        <!--SET title  = #{title,jdbcType=VARCHAR},-->
+            <!--link   = #{link,jdbcType=VARCHAR},-->
+            <!--img    = #{img,jdbcType=VARCHAR},-->
+            <!--source = #{source,jdbcType=VARCHAR},-->
+            <!--price  = #{price,jdbcType=REAL}-->
+        <!--WHERE id = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+
+    <select id="getPhoneInfo" resultMap="BaseResultMap">
+        SELECT *
+        FROM phone_info
+        LIMIT 20
+    </select>
+
+    <select id="getPhoneInfoByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT * FROM phone_info  LIMIT #{page},20
+    </select>
+
+    <!--<update id="insertDetail" parameterTycom.zylearLear.model.PhoneInfo">-->
+        <!--UPDATE phone_info-->
+        <!--SET brand=#{brand},-->
+            <!--size=#{size},-->
+            <!--ram=#{ram},-->
+            <!--pixel=#{pixel},-->
+            <!--rom=#{rom},-->
+            <!--cpu=#{cpu}-->
+        <!--WHERE id=#{id}-->
+    <!--</update>-->
+
+    <!--<select id="getPhoneInfoBySource" parameterType="java.lang.String" resultMap="BaseResultMap" >-->
+        <!--SELECT * FROM phone_info WHERE source=#{source}-->
+    <!--</select>-->
+
+
+    <!--<select id="getAllDetailInfo" resultMap="DetailMap" parameterType="java.lang.String">-->
+        <!--SELECT  * FROM  phone_info WHERE source=#{source}-->
+    <!--</select>-->
+
+
+    <!--<insert id="insert" parameterTycom.zylearLear.model.OdsPhoneInfo">-->
+        <!--INSERT INTO phone_info(link, title, img, source, price, brand, size, ram, pixel, rom, cpu,model,is_delete)-->
+        <!--VALUES (#{link}, #{title}, #{img}, #{source}, #{price}, #{brand}, #{size}, #{ram}, #{pixel}, #{rom}, #{cpu},#{model},0)-->
+    <!--</insert>-->
+
+    <!--<update id="update" parameterTycom.zylearLear.model.OdsPhoneInfo">-->
+        <!--UPDATE phone_info-->
+        <!--SET title = #{title},-->
+            <!--img = #{img},-->
+            <!--source = #{source},-->
+            <!--price = #{price},-->
+            <!--brand = #{brand},-->
+            <!--size = #{size},-->
+            <!--ram = #{ram},-->
+            <!--pixel = #{pixel},-->
+            <!--rom = #{rom},-->
+            <!--cpu = #{cpu},-->
+            <!--model=#{model}-->
+        <!--WHERE link = #{link}-->
+    <!--</update>-->
+
+
+
+</mapper>
