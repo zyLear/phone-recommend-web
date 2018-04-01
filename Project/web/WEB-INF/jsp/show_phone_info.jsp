@@ -266,9 +266,9 @@
                                 <td>
                                     <div id="priceDesc" class="my-button btn-sm btn-old-border">价格高到低</div>
                                 </td>
-                                <td>
-                                    <div id="costPerformance"  class="my-button btn-sm btn-old-border">性价比</div>
-                                </td>
+                                <%--<td>--%>
+                                    <%--<div id="costPerformance"  class="my-button btn-sm btn-old-border">性价比</div>--%>
+                                <%--</td>--%>
                             </tr>
                         </table>
                     </div>
