@@ -51,8 +51,8 @@ function forEach() {
 
             $(this).click(function () {
                 // alert($(this).attr('phoneId'));
-                // var phoneId = $(this).attr('phoneId');
-                // $.post("changePeopleProfiles.do",{'peopleId':currentPeopleId,'phoneId':phoneId});
+                var phoneId = $(this).attr('phoneId');
+                $.post("changePeopleProfiles.do",{'peopleId':currentPeopleId,'phoneId':phoneId});
                 // $('#modal').modal('show');
                 // return false;
             })

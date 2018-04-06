@@ -215,8 +215,8 @@ function forEachPhoneItems() {
 
             $(this).click(function () {
                // alert('test onClick()');
-               //  var phoneId = $(this).attr('phoneId');
-               //  $.post("changePeopleProfiles.do",{'peopleId':currentPeopleId,'phoneId':phoneId});
+                var phoneId = $(this).attr('phoneId');
+                $.post("changePeopleProfiles.do",{'peopleId':currentPeopleId,'phoneId':phoneId});
                //  $('#modal').modal('show');
                //  return false;
             })
